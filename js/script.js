@@ -136,3 +136,39 @@ const showSuccessModal = () => {
         messageContainer.innerHTML = '';
     }, 8000);
 };
+
+// Inicializa el smooth scroll para los enlaces del navbar
+const initSmoothScroll = () => {
+    // Seleccionar todos los enlaces que apuntan a IDs
+    const links = document.querySelectorAll('a[href^="#"]');
+    
+    links.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const targetId = link.getAttribute('href');
+            
+            // Solo aplicar si es un ID válido (no solo "#")
+            if (targetId !== '#' && targetId !== '#hero') {
+                e.preventDefault();
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Calcular la posición considerando el navbar fijo
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - navbarHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Cerrar el navbar en móvil si está abierto
+                    const navbarCollapse = document.querySelector('.navbar-collapse');
+                    if (navbarCollapse.classList.contains('show')) {
+                        const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                        bsCollapse.hide();
+                    }
+                }
+            }
+        });
+    });
+};
