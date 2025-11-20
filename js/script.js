@@ -172,3 +172,14 @@ const initSmoothScroll = () => {
         });
     });
 };
+
+// Agrega efecto de resaltado al navbar cuando se hace scroll
+window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    
+    if (window.scrollY > 50) {
+        navbar.classList.add('shadow');
+    } else {
+        navbar.classList.remove('shadow');
+    }
+});
