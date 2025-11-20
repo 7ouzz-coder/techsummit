@@ -29,3 +29,49 @@ document.addEventListener('DOMContentLoaded', () => {
     // Smooth scroll para los enlaces del navbar
     initSmoothScroll();
 });
+
+// Valida todos los campos del formulario
+ 
+const validateForm = () => {
+    const fullName = document.getElementById('fullName');
+    const email = document.getElementById('email');
+    const jobTitle = document.getElementById('jobTitle');
+    const terms = document.getElementById('terms');
+    
+    let isValid = true;
+    
+    // Validar nombre completo (no vacío y mínimo 3 caracteres)
+    if (fullName.value.trim() === '' || fullName.value.trim().length < 3) {
+        fullName.setCustomValidity('El nombre debe tener al menos 3 caracteres');
+        isValid = false;
+    } else {
+        fullName.setCustomValidity('');
+    }
+    
+    // Validar email (formato correcto)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.value.trim())) {
+        email.setCustomValidity('Ingresa un email válido');
+        isValid = false;
+    } else {
+        email.setCustomValidity('');
+    }
+    
+    // Validar cargo (no vacío)
+    if (jobTitle.value.trim() === '') {
+        jobTitle.setCustomValidity('El cargo es requerido');
+        isValid = false;
+    } else {
+        jobTitle.setCustomValidity('');
+    }
+    
+    // Validar términos y condiciones
+    if (!terms.checked) {
+        terms.setCustomValidity('Debes aceptar los términos');
+        isValid = false;
+    } else {
+        terms.setCustomValidity('');
+    }
+    
+    return isValid;
+};
