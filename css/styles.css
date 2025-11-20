@@ -1,5 +1,3 @@
-/* Custom Styles for TechSummit 2025 */
-
 /* Smooth scrolling */
 html {
     scroll-behavior: smooth;
@@ -49,10 +47,27 @@ body {
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
+/* Imagen del Hero */
+#hero img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Ajuste responsive para Hero */
+@media (max-width: 992px) {
+    #hero img {
+        height: 300px;
+    }
+}
+
 /* Speaker cards images */
 .card-img-top {
+    width: 100%;
     height: 250px;
     object-fit: cover;
+    object-position: center top;
 }
 
 /* Form styling */
